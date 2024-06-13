@@ -1,0 +1,21 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 70vh; 
+    width: 120vh;
+    background-image: url('../images/Background-container-image.png');
+    background-size: cover;
+    z-index: 1;
+    margin-left: 350px;
+    margin-top: 140px;
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .login-container {
+    width: 350px; /* Adjust width as needed */
+    padding: 10px; /* Reduce padding */
+    border-radius: 10px; /* Rounded corners */
+    background-color:rgb(255,255,255) !important;
+  }

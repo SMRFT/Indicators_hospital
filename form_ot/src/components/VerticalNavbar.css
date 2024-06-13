@@ -1,0 +1,39 @@
+.sidebar-container {
+  position: fixed;
+  top: 30px;
+  left: 0;
+  height: 100vh;
+  width: 220px; /* Adjust the width of the sidebar as needed */
+  z-index: 1000; /* Ensure the sidebar is above other content */
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: thin;
+}
+
+.sidebar-content {
+  padding-top: 10px; /* Adjust the top padding to accommodate the header */
+}
+
+.sidebar-content .sidebar-menu-item {
+  font-size: 16px; /* Set the default font size */
+}
+
+.sidebar-content .sidebar-menu-item:hover {
+  color: rgb(105, 105, 105); /* Change text color to gray on hover */
+  font-weight: bold; /* Make text bold on hover */
+  font-size: 18px; /* Increase font size on hover */
+}
+
+.logo{
+  max-width: 50px;
+}
+
+
+.sidebar-dropdown {
+  cursor: pointer;
+}
+
+.sidebar-dropdown-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
