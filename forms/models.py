@@ -71,11 +71,7 @@ class FirstFloor(models.Model):
     numberOfTransfusionReaction = models.CharField(max_length=100)
     numberOfTransfusionReactionRemarks = models.CharField(max_length=1200)
     numberOfUnitsTransfused = models.CharField(max_length=100)
-<<<<<<< HEAD
     numberOfUnitsTransfusedRemarks = models.CharField(max_length=1500)
-=======
-    numberOfUnitsTransfusedRemarks = models.CharField(max_length=1200)
->>>>>>> ef5bc966f42b7bfff94e14352ebe6421018da801
     sumOfTimeTakenForBloodAndBloodComponents = models.CharField(max_length=100)
     numberOfUrinaryCatheterAssociatedUtisInThatMonth = models.CharField(max_length=100)
     numberOfUrinaryCatheterAssociatedUtisInThatMonthRemarks = models.CharField(max_length=1200)
@@ -355,10 +351,6 @@ class CT(models.Model):
     numberOfReportingErrorsRemarks = models.CharField(max_length=1200)
     numberOfCasePerformed = models.CharField(max_length=100)
     numberOfTestsPerformed = models.CharField(max_length=100)
-<<<<<<< HEAD
-    numberOfCasePerformed = models.CharField(max_length=100)
-=======
->>>>>>> ef5bc966f42b7bfff94e14352ebe6421018da801
     numberOfStaffAdheringToSafety = models.CharField(max_length=100)
     numberOfStaffAudited = models.CharField(max_length=100)
     waitingTimeForDiagnostics = models.CharField(max_length=100)
