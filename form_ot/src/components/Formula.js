@@ -1,11 +1,13 @@
-// src/components/EmergencyRoomData.js
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import { CSVLink } from 'react-csv';
-import './Formuls.css';
+import './Formula.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+
 const EmergencyRoomData = () => {
   const [data, setData] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -14,7 +16,6 @@ const EmergencyRoomData = () => {
 
   const fetchData = async () => {
     if (!selectedDate) {
-      setError('Year and month are required');
       return;
     }
 
@@ -25,7 +26,7 @@ const EmergencyRoomData = () => {
     setError(null);
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/formula-data/`, {
+      const response = await axios.get(`http://15.207.192.151:8000/formula-data/`, {
         params: {
           year: year,
           month: month
@@ -43,50 +44,64 @@ const EmergencyRoomData = () => {
     fetchData();
   }, []); // Fetch data on component mount
 
-  const csvData = data ? Object.entries(data).map(([param, value]) => ({ Parameter: param, Value: value })) : [];
+  const handleFetchData = () => {
+    fetchData();
+  };
+
+  const csvData = data
+    ? Object.entries(data).map(([param, value]) => ({
+        Parameter: param,
+        Value: typeof value === 'number' ? value.toFixed(2) : value,
+      }))
+    : [];
 
   return (
-    <div className="container">
+    <div className="container1">
       <h1>Formula Data</h1>
-      <div className="picker-container">
-        <label>
-          Select Month and Year:
+      <div className="picker-container1">
+        <label>Select Month and Year:</label>
+      </div>
+      <div className="input-container">
+        <div className="date-picker-wrapper">
+        <i style={{ fontSize: "150%", color: "rgb(149,188,176)",marginRight:"5px"}} className="fa fa-calendar"></i>
           <DatePicker
             selected={selectedDate}
             onChange={(date) => setSelectedDate(date)}
             dateFormat="MM/yyyy"
             showMonthYearPicker
-            className="date-picker"
+            className="form-control"
           />
-        </label>
-        <button onClick={fetchData} className="fetch-button">Fetch Data</button>
+        </div>
+          <button onClick={handleFetchData} className="fetch-button1">Fetch Data</button>
+        {data && (
+          <CSVLink
+            data={csvData}
+            filename={`formula_data_${format(selectedDate, 'MM_yyyy')}.csv`}
+            className="csv-button1"
+          >
+            Export CSV
+          </CSVLink>
+        )}
       </div>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {data && (
-        <div>
-          <div className="csv-button-container">
-            <CSVLink data={csvData} filename={`formula_data_${format(selectedDate, 'MM_yyyy')}.csv`} className="csv-button">
-              Export CSV
-            </CSVLink>
-          </div>
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Parameter</th>
-                <th>Value</th>
+        <table className="data-table1">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(data).map(([param, value]) => (
+              <tr key={param}>
+                <td>{param}</td>
+                <td>{typeof value === 'number' ? value.toFixed(2) : value}</td>
               </tr>
-            </thead>
-            <tbody>
-              {Object.entries(data).map(([param, value]) => (
-                <tr key={param}>
-                  <td>{param}</td>
-                  <td>{value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

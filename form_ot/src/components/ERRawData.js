@@ -117,7 +117,7 @@ const ERRawData = ({ showHeading = true }) => {
                   }),
                 };
 
-                const response = await fetch('http://127.0.0.1:8000/ERRawData/', {
+                const response = await fetch('http://15.207.192.151:8000/ERRawData/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -63,8 +63,8 @@ function ChemoWard() {
     numberOfParenteralExposuresRemarks: '',
     totalNumberOfHandoversDoneAppropriately: '',
     totalNumberOfHandoverOpportunities: '',
-    totalnumberOfPatientsDevelopingPhlebitis: '',
-    totalnumberOfPatientsDevelopingPhlebitisRemarks: '',
+    totalNumberOfPatientsDevelopingPhlebitis: '',
+    totalNumberOfPatientsDevelopingPhlebitisRemarks: '',
     numberOfRestraintInjuriesOrStrangulation: '',
     numberOfRestraintInjuriesOrStrangulationRemarks: '',
     totalNumberOfRestraintPatientsDays: '',
@@ -139,7 +139,7 @@ function ChemoWard() {
           id,  
           name 
         };
-        const response = await fetch('http://127.0.0.1:8000/ChemoWard/', {
+        const response = await fetch('http://15.207.192.151:8000/ChemoWard/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ function ChemoWard() {
   };
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }} className="NumericalData">
+    <StyledContainer  className="NumericalData">
        <h2 className="text-center">Chemo Ward</h2>
        <div style={{float:"right"}} className='mt-3'>
           <div><b>ID: </b>{formData.id}</div>
@@ -380,8 +380,8 @@ function ChemoWard() {
       </Form.Group>
 
       </Col> 
-          <Col sm='4' controlId="numberOfPatientsDevelopingAdverseDrugReactionsRemarks">
-            <Form.Group >
+          <Col sm='4' >
+            <Form.Group controlId="numberOfPatientsDevelopingAdverseDrugReactionsRemarks" >
               <Form.Label>Remarks</Form.Label>
               <Form.Control
               required
@@ -584,7 +584,7 @@ function ChemoWard() {
 
     <Row className="mb-3">
     <Col sm='8'>
-      <Form.Group controlId="numberOfCentralLineAssociatedBloodStreamInfectionsInMonth">
+      <Form.Group controlId="numberCentralLineAssociatedBloodStreamInfectionsInAMonth">
         <Form.Label>Number Central Line - Associated Blood Stream Infections in a Month</Form.Label>
         <Form.Control
         required
@@ -599,7 +599,7 @@ function ChemoWard() {
       </Col>
 
       <Col sm='4'>
-      <Form.Group controlId="CentralLineAssociatedBloodRemarks">
+      <Form.Group controlId="numberCentralLineAssociatedBloodStreamInfectionsInAMonthRemarks">
         <Form.Label>Remarks</Form.Label>
         <Form.Control
         required
@@ -835,12 +835,12 @@ function ChemoWard() {
 
       <Row className="mb-3">
       <Col sm='8'>
-        <Form.Group controlId="totalnumberOfPatientsDevelopingPhlebitis">
+        <Form.Group controlId="totalNumberOfPatientsDevelopingPhlebitis">
           <Form.Label>Total Number of Patients Developing Phlebitis</Form.Label>
           <Form.Control
           required
             type="text"
-            value={formData.totalnumberOfPatientsDevelopingPhlebitis}
+            value={formData.totalNumberOfPatientsDevelopingPhlebitis}
             onChange={handleChange}
           />
           <Form.Control.Feedback type="invalid">
@@ -850,12 +850,12 @@ function ChemoWard() {
         </Col>
 
         <Col sm='4'>
-        <Form.Group controlId="totalnumberOfPatientsDevelopingPhlebitisRemarks">
+        <Form.Group controlId="totalNumberOfPatientsDevelopingPhlebitisRemarks">
           <Form.Label>Remarks</Form.Label>
           <Form.Control
           required
             type="text"
-            value={formData.totalnumberOfPatientsDevelopingPhlebitisRemarks}
+            value={formData.totalNumberOfPatientsDevelopingPhlebitisRemarks}
             onChange={handleChange}
           />
           <Form.Control.Feedback type="invalid">

@@ -118,7 +118,7 @@ const OTForm = () => {
               id,  
               name 
             };
-        const response = await fetch('http://127.0.0.1:8000/OT/', {
+        const response = await fetch('http://15.207.192.151:8000/OT/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ const OTForm = () => {
   };
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }} className="NumericalData">
+    <StyledContainer  className="NumericalData">
        <h2 className="text-center">OT(Operation Theatre)</h2>
        <div style={{float:"right"}} className='mt-3'>
           <div><b>ID: </b>{formData.id}</div>
@@ -317,7 +317,7 @@ const OTForm = () => {
         </Row>
 
         <Row className="mb-3">
-          <Form.Group controlId="numberOfSurgeriesWhereTheProcedureWereFollowed">
+          <Form.Group controlId="numberOfSurgeriesWhereProceduresWereFollowed">
             <Form.Label>Number of Surgeries where Procedures were followed (Correct Patient, Correct Surgery)</Form.Label>
             <Form.Control required type="text" value={formData.numberOfSurgeriesWhereProceduresWereFollowed} onChange={handleChange} />
             <Form.Control.Feedback type="invalid">Please fill out this field</Form.Control.Feedback>

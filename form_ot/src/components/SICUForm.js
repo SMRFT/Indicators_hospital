@@ -143,7 +143,7 @@ function SICU() {
           id,  
           name 
         };
-        const response = await fetch('http://127.0.0.1:8000/SICU/', {
+        const response = await fetch('http://15.207.192.151:8000/SICU/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ function SICU() {
 
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }} className="NumericalData">
+    <StyledContainer  className="NumericalData">
        <h2 className="text-center">SICU</h2>
        <div style={{float:"right"}} className='mt-3'>
           <div><b>ID: </b>{formData.id}</div>

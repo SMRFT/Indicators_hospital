@@ -77,7 +77,7 @@ const HR = () => {
               id,  
               name 
             };
-        const response = await fetch('http://127.0.0.1:8000/HR/', {
+        const response = await fetch('http://15.207.192.151:8000/HR/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const HR = () => {
   };
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }} className="NumericalData">
+    <StyledContainer  className="NumericalData">
     <h2 className="text-center">HR</h2>
     <div style={{float:"right"}} className='mt-3'>
        <div><b>ID: </b>{formData.id}</div>
@@ -163,12 +163,12 @@ const HR = () => {
         </Row>
 
         <Row className="mb-3">
-          <Form.Group controlId="totalNumberOfStaff">
+          <Form.Group controlId="totalNumberOfStaffNursing">
             <Form.Label>Total No Of Nursing Staff</Form.Label>
             <Form.Control
               required
               type="text"
-              value={formData.totalNumberOfStaff}
+              value={formData.totalNumberOfStaffNursing}
               onChange={handleChange}
             />
             <Form.Control.Feedback type="invalid">

@@ -117,7 +117,7 @@ const SICURawData = ({ showHeading = true }) => {
                   }),
                 };
 
-                const response = await fetch('http://127.0.0.1:8000/SICURawData/', {
+                const response = await fetch('http://15.207.192.151:8000/SICURawData/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

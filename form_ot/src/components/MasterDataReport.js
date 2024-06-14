@@ -12,7 +12,7 @@ function transposeData(data) {
   const transposedData = {};
   data.forEach(item => {
     Object.keys(item).forEach(key => {
-      if (key !== 'selected_date' && key !== 'ward' && key !== '_id') {
+      if (key !== 'selectedDate' && key !== 'ward' && key !== '_id') {
         const formattedKey = key.split(/(?=[A-Z])/).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         if (!transposedData[formattedKey]) {
           transposedData[formattedKey] = [];
@@ -75,7 +75,7 @@ function MasterDataReport() {
       return;
     }
     const transposedData = transposeData(exportData);
-    const headers = ['Indicators', ...exportData.map(item => formatDate(item.selected_date))];
+    const headers = ['Indicators', ...exportData.map(item => formatDate(item.selectedDate))];
     const worksheetData = Object.entries(transposedData).map(([field, values]) => [field, ...values]);
     const excelData = [headers, ...worksheetData];
     const wb = XLSX.utils.book_new();
@@ -91,7 +91,7 @@ function MasterDataReport() {
   const handleSaveClick = () => {
     const updatedData = exportData.map(item => ({
       ...item,
-      selected_date: new Date(item.selected_date).toISOString(),
+      selecteDate: new Date(item.selecteDate).toISOString(),
       _id: item._id ? { $oid: item._id } : undefined
     }));
   
@@ -205,38 +205,42 @@ function MasterDataReport() {
               <tr>
                 <th style={{ border: '1px solid #ddd', padding: '8px', backgroundColor: 'rgb(149,188,176)', color: "white" }}>Field</th>
                 {exportData.map((item, index) => (
-                  <th key={index} style={{ border: '1px solid #ddd', padding: '8px', backgroundColor: 'rgb(149,188,176)', color: "white" }}>{formatDate(item.selected_date)}</th>
+                  <th key={index} style={{ border: '1px solid #ddd', padding: '8px', backgroundColor: 'rgb(149,188,176)', color: "white" }}>{formatDate(item.selectedDate)}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {Object.keys(exportData[0]).map((field, index) => {
-                if (field !== 'selected_date' && field !== 'ward' && field !== '_id') {
+                if (field !== 'selectedDate' && field !== 'ward' && field !== '_id') {
                   return (
                     <>
                       <tr key={index}>
-                        <td rowSpan="15">{field}</td> {/* Assuming there are 15 data items for each 'field' */}
-                        {exportData.map((item, index) => (
-                          <td key={index}>
-                            {item[field].map((obj, idx) => (
-                              <div key={idx}>
-                                <p>Patient Name: {obj.patientName}</p>
-                                <p>Age: {obj.age}</p>
-                                <p>UHID No: {obj.uhidNo}</p>
-                                <p>Patient Time to be Ward Time Entered In Ward Transfer Sheet By Dmo: {obj.wardTransferSheet}</p>
-                                <p>Assesment Completed Time By Dmo: {obj.timeByDmo}</p>
-                                <p>Time Hr/ Mts By Dmo: {obj.timeHrsmts}</p>
-                                <p>Care Plan Documented By Dmo Yes / No: {obj.carePlanPlanDoc}</p>
-                                <p>Nutrition Assesment Completed By Dmo Yes / No: {obj.nutritionAssessment}</p>
-                                <p>Name of the Doctor Who perform Initial Assesment: {obj.initialAssessment}</p>
-                                <p>Patient Time to Entered With Transfer Sheet By Dmo: {obj.transferSheet}</p>
-                                <p>Assessment Completed Time By Nurse: {obj.assessmentCompletedTimeBy}</p>
-                                <p>Nursing Care Plan Documented Yes / No: {obj.nursingCarePlan}</p>
-                                <p>Name Of The Primary Consultant: {obj.primaryConsultant}</p>
-                                <p>Name Of The Staff Sign - Id No: {obj.staffSign}</p>
-                                <p>Incharge Staff Name - Id No: {obj.inchargeStaffName}</p>
-                              </div>
-                            ))}
+                        <td>{field}</td>
+                        {exportData.map((item, idx) => (
+                          <td key={idx}>
+                            {Array.isArray(item[field]) ? (
+                              item[field].map((obj, subIdx) => (
+                                <div key={subIdx}>
+                                  <p>Patient Name: {obj.patientName}</p>
+                                  <p>Age: {obj.age}</p>
+                                  <p>UHID No: {obj.uhidNo}</p>
+                                  <p>Patient Time to be Ward Time Entered In Ward Transfer Sheet By Dmo: {obj.wardTransferSheet}</p>
+                                  <p>Assesment Completed Time By Dmo: {obj.timeByDmo}</p>
+                                  <p>Time Hr/ Mts By Dmo: {obj.timeHrsmts}</p>
+                                  <p>Care Plan Documented By Dmo Yes / No: {obj.carePlanPlanDoc}</p>
+                                  <p>Nutrition Assesment Completed By Dmo Yes / No: {obj.nutritionAssessment}</p>
+                                  <p>Name of the Doctor Who perform Initial Assesment: {obj.initialAssessment}</p>
+                                  <p>Patient Time to Entered With Transfer Sheet By Dmo: {obj.transferSheet}</p>
+                                  <p>Assessment Completed Time By Nurse: {obj.assessmentCompletedTimeBy}</p>
+                                  <p>Nursing Care Plan Documented Yes / No: {obj.nursingCarePlan}</p>
+                                  <p>Name Of The Primary Consultant: {obj.primaryConsultant}</p>
+                                  <p>Name Of The Staff Sign - Id No: {obj.staffSign}</p>
+                                  <p>Incharge Staff Name - Id No: {obj.inchargeStaffName}</p>
+                                </div>
+                              ))
+                            ) : (
+                              <p>{item[field]}</p>
+                            )}
                           </td> 
                         ))}
                       </tr>

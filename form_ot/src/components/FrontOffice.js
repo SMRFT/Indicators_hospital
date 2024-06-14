@@ -78,13 +78,13 @@ function FrontOffice() {
     setFormData((prevFormData) => {
       const updatedFormData = { ...prevFormData, [id]: updatedValue };
 
-      const totalNumberOfOutPatients = ['ECHS', 'ESI', 'Railway', 'TNCM', 'PAY']
+      const totalNumberOfOutPatients = ['OutPatientECHS', 'OutPatientESI', 'OutPatientRailway', 'OutPatientTNCM', 'OutPatientPAY']
         .reduce((sum, field) => sum + (parseInt(updatedFormData[field], 10) || 0), 0);
       
       const sumOfTotalPatientReportingtime = ['MRI', 'CT', 'USG', 'ECHO', 'LAB', 'Xray']
         .reduce((sum, field) => sum + (parseInt(updatedFormData[field], 10) || 0), 0);
 
-      const totalNumberOfInPatients = ['InECHS', 'InESI', 'InRailway', 'InTNCM', 'InPAY']
+      const totalNumberOfInPatients = ['InPatientECHS', 'InPatientESI', 'InPatientRailway', 'InPatientTNCM', 'InPatientPAY']
         .reduce((sum, field) => sum + (parseInt(updatedFormData[field], 10) || 0), 0);
 
       const DialysisTotal = ['DialysisInsurance', 'DialysisPay']
@@ -118,7 +118,7 @@ function FrontOffice() {
           id,  
           name 
         };
-        const response = await fetch('http://127.0.0.1:8000/FrontOffice/', {
+        const response = await fetch('http://15.207.192.151:8000/FrontOffice/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ function FrontOffice() {
   };
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }}>
+    <StyledContainer className="NumericalData">
       <h1 className="text-center mb-4">Front Office</h1>
       <div style={{float:"right"}} className='mt-3'>
        <div><b>ID: </b>{formData.id}</div>

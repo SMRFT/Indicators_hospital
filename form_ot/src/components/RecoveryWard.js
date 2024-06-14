@@ -23,7 +23,7 @@ function RecoveryWard() {
     id: '',  
     name: '',
     selectedDate: '',
-    SumofTimeTakenforInitialAssessment: '',
+    sumOfTimeTakenforInitialAssessment: '',
     totalNumberOfAdmissions: '',
     numberOfBedsOccupied: '',
     totalNumberOfMedicationErrors: '',
@@ -94,8 +94,8 @@ function RecoveryWard() {
       const index = parseInt(id.split('-')[1]);
       setFormData({
         ...formData,
-        unitsTransfusedRemarks: {
-          ...formData.unitsTransfusedRemarks,
+        numberOfUnitsTransfusedRemarks: {
+          ...formData.numberOfUnitsTransfusedRemarks,
           [`remarks-${index}`]: value,
         },
       });
@@ -122,7 +122,7 @@ function RecoveryWard() {
           id,  
           name 
         };
-        const response = await fetch('http://127.0.0.1:8000/RecoveryWard/', {
+        const response = await fetch('http://15.207.192.151:8000/RecoveryWard/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ function RecoveryWard() {
   };
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }} className="NumericalData">
+    <StyledContainer  className="NumericalData">
        <h2 className="text-center">Recovery Ward</h2>
        <div style={{float:"right"}} className='mt-3'>
           <div><b>ID: </b>{formData.id}</div>
@@ -177,12 +177,12 @@ function RecoveryWard() {
         </Form.Group>
 
         <Row className="mb-3">
-          <Form.Group controlId="SumofTimeTakenforInitialAssessment">
+          <Form.Group controlId="sumOfTimeTakenforInitialAssessment">
             <Form.Label>Sum of Time Taken for Initial Assessment (Min)</Form.Label>
             <Form.Control
               required
               type="text"
-              value={formData.SumofTimeTakenforInitialAssessment}
+              value={formData.sumOfTimeTakenforInitialAssessment}
               onChange={handleChange}
             />
             <Form.Control.Feedback type="invalid">

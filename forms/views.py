@@ -477,14 +477,14 @@ def get_export_rawdata(request):
         if ward and date:
             query_params['ward'] = ward
             parsed_date = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%fZ")
-            query_params['selected_date'] = parsed_date.date()
+            query_params['selectedDate'] = parsed_date.date()
 
         if ward and year and month:
             start_date = datetime(int(year), int(month), 1)
             end_date = start_date.replace(day=1, month=int(month)+1) if int(month) < 12 else start_date.replace(year=int(year)+1, month=1)
             query_params['ward'] = ward
-            query_params['selected_date__gte'] = start_date
-            query_params['selected_date__lt'] = end_date
+            query_params['selectedDate__gte'] = start_date
+            query_params['selectedDate__lt'] = end_date
 
         if query_params:
             try:

@@ -45,19 +45,18 @@ import MICURawData from './components/MICURawData';
 import ThirdFloorRawData from './components/ThirdFloorRawData';
 import OTRawData from './components/OTRawData';
 import ERRawData from './components/ERRawData';
-import Formula from './components/Formula';
 function App() {
   const location = useLocation();
   const [userRole, setUserRole] = useState(localStorage.getItem('userRole'));
-
   useEffect(() => {
     setUserRole(localStorage.getItem('userRole'));
   }, [location]);
-
   const showSidebar = userRole && !['/', '/Login', '/AdminLogin', '/EmployeeLogin'].includes(location.pathname);
   const showLogo = !showSidebar && location.pathname !== '/';
+  const hideMainContent = ['/','/Login','/AdminLogin','/EmployeeLogin','/Register','/Availability','/Report','/MasterDataReport',
+    '/FirstFloorRawData','/FirstSuitRawData','/SecondFloorRawData','./SecondSuitRawData','/ThirdFloorRawData','/RecoveryWardRawData',
+    '/OTRawData','/ERRawData','/SICURawData','/NICURawData','/MICURawData'].includes(location.pathname);
   console.log("Rendering App with userRole:", userRole);
-
   return (
     <div className="App">
       {showLogo && (
@@ -70,54 +69,53 @@ function App() {
           <Sidebar userRole={userRole} location={location} />
         </div>
       )}
-
-      <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route path='/EmployeeLogin' element={<EmployeeLogin setUserRole={setUserRole} />} />
-        <Route path='/AdminLogin' element={<AdminLogin setUserRole={setUserRole} />} />
-        <Route path='/Register' element={<Register />} />
-        <Route path="/Availability" element={<Availability />} />
-        <Route path="/Report" element={<Report />} />
-        <Route path="/MasterDataReport" element={<MasterDataReport />} />
-        <Route path='/FrontOffice' element={<FrontOffice />} />
-        <Route path='/FirstSuit' element={<FirstSuit />} />
-        <Route path='/FirstFloor' element={<FirstFloor />} />
-        <Route path='/SecondFloor' element={<SecondFloor />} />
-        <Route path='/SecondSuit' element={<SecondSuit />} />
-        <Route path='/ThirdFloor' element={<ThirdFloor />} />
-        <Route path='/CT' element={<CT />} />
-        <Route path='/Lab' element={<Lab />} />
-        <Route path='/MRI' element={<MRI />} />
-        <Route path='/XRay' element={<XRay />} />
-        <Route path='/OPD' element={<OPD />} />
-        <Route path='/OTForm' element={<OTForm />} />
-        <Route path='/HR' element={<HR />} />
-        <Route path='/Dialysis' element={<Dialysis />} />
-        <Route path='/Physiotherapy' element={<Physiotherapy />} />
-        <Route path='/OPPharmacy' element={<OPPharmacy />} />
-        <Route path='/IPPharmacy' element={<IPPharmacy />} />
-        <Route path='/ER' element={<ER />} />
-        <Route path='/MRDForm' element={<MRDForm />} />
-        <Route path='/ChemoWard' element={<ChemoWard/>} />
-        <Route path='/RecoveryWard' element={<RecoveryWard />} />
-        <Route path='/SICUForm' element={<SICUForm />} />
-        <Route path='/MICUForm' element={<MICUForm />} />
-        <Route path='/NICUForm' element={<NICUForm />} />
-        <Route path='/FirstFloorRawData' element={<FirstFloorRawData />} />
-        <Route path='/FirstSuitRawData' element={<FirstSuitRawData />} />
-        <Route path='/SecondFloorRawData' element={<SecondFloorRawData />} />
-        <Route path='/SecondSuitRawData' element={<SecondSuitRawData />} />
-        <Route path='/ThirdFloorRawData' element={<ThirdFloorRawData />} />
-        <Route path='/RecoveryWardRawData' element={<RecoveryWardRawData />} />
-        <Route path='/OTRawData' element={<OTRawData />} />
-        <Route path='/ERRawData' element={<ERRawData />} />
-        <Route path='/SICURawData' element={<SICURawData />} />
-        <Route path='/NICURawData' element={<NICURawData />} />
-        <Route path='/MICURawData' element={<MICURawData />} />
-        <Route path='/Formula' element={<Formula/>} />
-      </Routes>
+      <div className={hideMainContent ? '' : 'main-content'}>
+        <Routes>
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/EmployeeLogin' element={<EmployeeLogin setUserRole={setUserRole} />} />
+          <Route path='/AdminLogin' element={<AdminLogin setUserRole={setUserRole} />} />
+          <Route path='/Register' element={<Register />} />
+          <Route path="/Availability" element={<Availability />} />
+          <Route path="/Report" element={<Report />} />
+          <Route path="/MasterDataReport" element={<MasterDataReport />} />
+          <Route path='/FrontOffice' element={<FrontOffice />} />
+          <Route path='/FirstSuit' element={<FirstSuit />} />
+          <Route path='/FirstFloor' element={<FirstFloor />} />
+          <Route path='/SecondFloor' element={<SecondFloor />} />
+          <Route path='/SecondSuit' element={<SecondSuit />} />
+          <Route path='/ThirdFloor' element={<ThirdFloor />} />
+          <Route path='/CT' element={<CT />} />
+          <Route path='/Lab' element={<Lab />} />
+          <Route path='/MRI' element={<MRI />} />
+          <Route path='/XRay' element={<XRay />} />
+          <Route path='/OPD' element={<OPD />} />
+          <Route path='/OTForm' element={<OTForm />} />
+          <Route path='/HR' element={<HR />} />
+          <Route path='/Dialysis' element={<Dialysis />} />
+          <Route path='/Physiotherapy' element={<Physiotherapy />} />
+          <Route path='/OPPharmacy' element={<OPPharmacy />} />
+          <Route path='/IPPharmacy' element={<IPPharmacy />} />
+          <Route path='/ER' element={<ER />} />
+          <Route path='/MRDForm' element={<MRDForm />} />
+          <Route path='/ChemoWard' element={<ChemoWard />} />
+          <Route path='/RecoveryWard' element={<RecoveryWard />} />
+          <Route path='/SICUForm' element={<SICUForm />} />
+          <Route path='/MICUForm' element={<MICUForm />} />
+          <Route path='/NICUForm' element={<NICUForm />} />
+          <Route path='/FirstFloorRawData' element={<FirstFloorRawData />} />
+          <Route path='/FirstSuitRawData' element={<FirstSuitRawData />} />
+          <Route path='/SecondFloorRawData' element={<SecondFloorRawData />} />
+          <Route path='/SecondSuitRawData' element={<SecondSuitRawData />} />
+          <Route path='/ThirdFloorRawData' element={<ThirdFloorRawData />} />
+          <Route path='/RecoveryWardRawData' element={<RecoveryWardRawData />} />
+          <Route path='/OTRawData' element={<OTRawData />} />
+          <Route path='/ERRawData' element={<ERRawData />} />
+          <Route path='/SICURawData' element={<SICURawData />} />
+          <Route path='/NICURawData' element={<NICURawData />} />
+          <Route path='/MICURawData' element={<MICURawData />} />
+        </Routes>
+      </div>
     </div>
   );
 }
-
 export default App;

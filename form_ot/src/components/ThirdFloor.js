@@ -144,7 +144,7 @@ const ThirdFloor = () => {
           id,  
           name 
         };
-        const response = await fetch('http://127.0.0.1:8000/ThirdFloor/', {
+        const response = await fetch('http://15.207.192.151:8000/ThirdFloor/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ const ThirdFloor = () => {
   };
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }} className="NumericalData">
+    <StyledContainer  className="NumericalData">
        <h2 className="text-center">Third Floor</h2>
        <div style={{float:"right"}} className='mt-3'>
           <div><b>ID: </b>{formData.id}</div>
@@ -316,7 +316,7 @@ const ThirdFloor = () => {
 
         <Row className="mb-3">
           <Col>
-            <Form.Group controlId="numberOfunitsTransfused">
+            <Form.Group controlId="numberOfUnitsTransfused">
               <Form.Label>Number of Units Transfused</Form.Label>
               <Form.Control type="text" value={formData.numberOfUnitsTransfused} onChange={handleChange} required />
             </Form.Group>

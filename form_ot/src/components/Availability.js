@@ -12,7 +12,7 @@ function Availability() {
     setSelectedWard(value);
     // Fetch data from backend API based on selected ward
     try {
-      const response = await fetch(`http://127.0.0.1:8000/availabilityofroomsandbeds/${value}/`);
+      const response = await fetch(`http://15.207.192.151:8000/availabilityofroomsandbeds/${value}/`);
       const data = await response.json();
       setNumberOfBedsOccupied(data.numberOfBedsOccupied);
       setNumberOfBedsAvailable(data.numberOfBedsAvailable);

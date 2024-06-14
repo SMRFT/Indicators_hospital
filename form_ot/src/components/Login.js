@@ -20,7 +20,7 @@ const Login = ({ title, endpoint, setUserRole }) => {
     e.preventDefault();
     console.log('Submitting login request with endpoint:', endpoint);
     try {
-      const response = await fetch(`http://127.0.0.1:8000/login/`, {
+      const response = await fetch(`http://15.207.192.151:8000/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

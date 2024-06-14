@@ -42,7 +42,7 @@ function Report() {
   }, [selectedWard, selectedDate, selectedMonth]);
 
   const fetchExportData = () => {
-    let apiUrl = `http://127.0.0.1:8000/get-export-data/?ward=${selectedWard}`;
+    let apiUrl = `http://15.207.192.151:8000/get-export-data/?ward=${selectedWard}`;
     if (selectedDate) {
       const isoDate = new Date(selectedDate.getTime() + 24 * 60 * 60 * 1000).toISOString();
       apiUrl += `&date=${isoDate}`;
@@ -96,7 +96,7 @@ function Report() {
     // Check if any changes have been made
     const changesMade = JSON.stringify(updatedData) !== JSON.stringify(exportData);
   
-    fetch('http://127.0.0.1:8000/update-export-data/', {
+    fetch('http://15.207.192.151:8000/update-export-data/', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ function Report() {
         <Col xs={12} md={4}>
           <div className="input-group">
             <div style={{ cursor: 'pointer' }} onClick={() => document.getElementById('monthYearPicker').click()}>
-              <i style={{ fontSize: "130%", color: "rgb(149,188,176)", marginRight: "10px", marginTop: "5px" }} className="fa fa-calendar"></i>
+              <i style={{ fontSize: "130%", color: "rgb(149,188,176)", marginRight: "12px", marginTop: "15px" }} className="fa fa-calendar"></i>
             </div>
             <DatePicker
               id="monthYearPicker"

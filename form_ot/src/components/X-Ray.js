@@ -76,7 +76,7 @@ const XRay = () => {
               id,  
               name 
             };
-            const response = await fetch('http://127.0.0.1:8000/XRay/', {
+            const response = await fetch('http://15.207.192.151:8000/Xray/', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const XRay = () => {
       };
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }} className="NumericalData">
+    <StyledContainer className="NumericalData">
        <h2 className="text-center">XRay</h2>
        <div style={{float:"right"}} className='mt-3'>
           <div><b>ID: </b>{formData.id}</div>

@@ -72,7 +72,7 @@ function MRDForm() {
               id,  
               name 
             };
-            const response = await fetch('http://127.0.0.1:8000/MRD/', {
+            const response = await fetch('http://15.207.192.151:8000/MRD/', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ function MRDForm() {
       };
 
   return (
-    <StyledContainer style={{ maxWidth: '600px' }} className="NumericalData">
+    <StyledContainer  className="NumericalData">
        <h2 className="text-center">MRD</h2>
        <div style={{float:"right"}} className='mt-3'>
           <div><b>ID: </b>{formData.id}</div>
